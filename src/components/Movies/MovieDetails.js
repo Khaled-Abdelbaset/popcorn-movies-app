@@ -3,12 +3,13 @@ import { useKey } from "../../custom-hooks/useKey";
 import { Loader } from "../helpers/Loader";
 import StarRating from "../Rating/StarRating";
 
+const IMDB_API_KEY = process.env.REACT_APP_IMDB_API_KEY;
+
 export function MovieDetails({
   selectedID,
   onCloseMovie,
   onAddWatched,
   watched,
-  KEY,
 }) {
   const [details, setDetails] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +64,7 @@ export function MovieDetails({
       try {
         setIsLoading(true);
         const res = await fetch(
-          `http://www.omdbapi.com/?&apikey=${KEY}&i=${selectedID}`
+          `http://www.omdbapi.com/?&apikey=${IMDB_API_KEY}&i=${selectedID}`
         );
         if (!res.ok) {
           throw new Error("Error in fetching movie details");
@@ -80,7 +81,7 @@ export function MovieDetails({
       }
     }
     getMovieDetails();
-  }, [selectedID, KEY]);
+  }, [selectedID]);
 
   return (
     <div className="details">

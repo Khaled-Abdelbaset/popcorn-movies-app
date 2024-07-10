@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-const KEY = "c233b6c";
+
+const IMDB_API_KEY = process.env.REACT_APP_IMDB_API_KEY;
 
 export function useMovies(query) {
   const [movies, setMovies] = useState([]);
@@ -13,7 +14,7 @@ export function useMovies(query) {
           setIsLoading(true);
           setError("");
           const res = await fetch(
-            `http://www.omdbapi.com/?i=tt3896198&apikey=${KEY}&s=${query}`,
+            `http://www.omdbapi.com/?i=tt3896198&apikey=${IMDB_API_KEY}&s=${query}`,
             { signal: controller.signal }
           );
           if (!res.ok) {

@@ -8,8 +8,6 @@ import { MovieDetails } from "./components/Movies/MovieDetails";
 import { Watched } from "./components/watched-movies/Watched";
 import { MovieList } from "./components/Movies/MovieList";
 
-const KEY = "c233b6c";
-
 export default function App() {
   const [query, setQuery] = useState("");
   const [selectedID, setSelectedID] = useState("");
@@ -53,13 +51,12 @@ export default function App() {
                   selectedID={selectedID}
                   onCloseMovie={handelCloseMovie}
                   watched={watched}
-                  KEY={KEY}
                 />
               )}
               {error && <ErrorMessage message={error} />}
             </>
           ) : (
-            <Watched watched={watched} onDeleteWatched={handleDeleteWatched}/>
+            <Watched watched={watched} onDeleteWatched={handleDeleteWatched} />
           )}
         </Box>
       </Main>
